@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		369E08901BBA6D270048BA70 /* Nv12To420.c in Sources */ = {isa = PBXBuildFile; fileRef = 369E088C1BBA6D270048BA70 /* Nv12To420.c */; settings = {ASSET_TAGS = (); }; };
-		369E08911BBA6D270048BA70 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 369E088E1BBA6D270048BA70 /* Makefile */; settings = {ASSET_TAGS = (); }; };
-		369E08921BBA6D270048BA70 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 369E088F1BBA6D270048BA70 /* main.c */; settings = {ASSET_TAGS = (); }; };
+		36584D361C40CF8F003D1BB9 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 36584D351C40CF8F003D1BB9 /* main.c */; settings = {ASSET_TAGS = (); }; };
+		36D2A1591C40CF4E0052F174 /* Nv12To420.c in Sources */ = {isa = PBXBuildFile; fileRef = 36D2A1561C40CF4E0052F174 /* Nv12To420.c */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,11 +24,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		36584D351C40CF8F003D1BB9 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = SOURCE_ROOT; };
 		369E08821BBA6D140048BA70 /* Nv12To420 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Nv12To420; sourceTree = BUILT_PRODUCTS_DIR; };
-		369E088C1BBA6D270048BA70 /* Nv12To420.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Nv12To420.c; sourceTree = "<group>"; };
-		369E088D1BBA6D270048BA70 /* Nv12To420.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nv12To420.h; sourceTree = "<group>"; };
-		369E088E1BBA6D270048BA70 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		369E088F1BBA6D270048BA70 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		36D2A1561C40CF4E0052F174 /* Nv12To420.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Nv12To420.c; sourceTree = SOURCE_ROOT; };
+		36D2A1571C40CF4E0052F174 /* Nv12To420.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nv12To420.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,10 +60,9 @@
 		369E08841BBA6D140048BA70 /* Nv12To420 */ = {
 			isa = PBXGroup;
 			children = (
-				369E088C1BBA6D270048BA70 /* Nv12To420.c */,
-				369E088D1BBA6D270048BA70 /* Nv12To420.h */,
-				369E088E1BBA6D270048BA70 /* Makefile */,
-				369E088F1BBA6D270048BA70 /* main.c */,
+				36584D351C40CF8F003D1BB9 /* main.c */,
+				36D2A1561C40CF4E0052F174 /* Nv12To420.c */,
+				36D2A1571C40CF4E0052F174 /* Nv12To420.h */,
 			);
 			path = Nv12To420;
 			sourceTree = "<group>";
@@ -126,9 +123,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				369E08911BBA6D270048BA70 /* Makefile in Sources */,
-				369E08901BBA6D270048BA70 /* Nv12To420.c in Sources */,
-				369E08921BBA6D270048BA70 /* main.c in Sources */,
+				36D2A1591C40CF4E0052F174 /* Nv12To420.c in Sources */,
+				36584D361C40CF8F003D1BB9 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +241,7 @@
 				369E088B1BBA6D140048BA70 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
