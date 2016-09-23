@@ -9,18 +9,30 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/time.h>
 #include <fcntl.h>
 #include <unistd.h>
 
 #include "Nv12To420.h"
 
+
+typedef struct
+{
+    char name[256];
+} string_t;
+
+static string_t null;
+
+
+
 int main(int argc, char *argv[])
 {
-    int fd_rd;
-    int fd_wr;
+    int ifd;
+    int ofd;
     
     uint8_t *y;
     uint8_t *uv;
@@ -30,7 +42,8 @@ int main(int argc, char *argv[])
     uint32_t height;
     uint32_t wxh;
     
-    char *output_file_name;
+    char *cp;
+    string_t output;
 
 
     if (argc < 4)
@@ -45,20 +58,28 @@ int main(int argc, char *argv[])
     width   = 0;
     height  = 0;
     wxh     = 0;
-    
-    output_file_name = "420sp.yuv";
+	cp		= NULL;
+	output	= null;
 
-
-    // get fd_rd file name from comand line
-    fd_rd = open(argv[1], O_RDONLY);
-    if (fd_rd < 0)
+    // get input file name from comand line
+    ifd = open(argv[1], O_RDONLY);
+    if (ifd < 0)
     {
         perror(argv[1]);
         exit(EXIT_FAILURE);
     }
     
-    // specify fd_wr file name
-    fd_wr = open(output_file_name, O_WRONLY | O_CREAT, S_IRUSR);
+    // specify output file name
+	cp = rindex(argv[1], '_');
+	strncpy(output.name, argv[1], cp - argv[1]);
+	cp = rindex(argv[1], '.');
+    strcat(output.name, cp);
+    ofd = open
+            (
+             output.name,
+             O_WRONLY | O_CREAT | O_TRUNC,
+             S_IRUSR
+            );
     
     width   = atoi(argv[2]);
     height  = atoi(argv[3]);
@@ -76,7 +97,7 @@ int main(int argc, char *argv[])
     
     while (1)
     {
-        rd_sz = read(fd_rd, img, wxh * 3 / 2);
+        rd_sz = read(ifd, img, wxh * 3 / 2);
             
         if (rd_sz == wxh * 3 / 2)
         {
@@ -88,9 +109,9 @@ int main(int argc, char *argv[])
                 uv
             );
  
-            write(fd_wr, y, wxh);
-            write(fd_wr, u_dst, wxh / 4);
-            write(fd_wr, v_dst, wxh / 4);
+            write(ofd, y, wxh);
+            write(ofd, u_dst, wxh / 4);
+            write(ofd, v_dst, wxh / 4);
         }
         else
         {
@@ -100,11 +121,11 @@ int main(int argc, char *argv[])
         fflush(stdout);
     }
     
-    close(fd_rd);
-    close(fd_wr);
+    close(ifd);
+    close(ofd);
     
     printf("Done\n");
-    printf("Output file: %s\n", output_file_name);
+    printf("Output file: %s\n", output.name);
     
     return 0;
 }
