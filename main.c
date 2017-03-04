@@ -20,15 +20,6 @@
 #include "Nv12To420.h"
 
 
-typedef struct
-{
-    char name[256];
-} string_t;
-
-static string_t null;
-
-
-
 int main(int argc, char *argv[])
 {
     int ifd;
@@ -43,7 +34,7 @@ int main(int argc, char *argv[])
     uint32_t wxh;
     
     char *cp;
-    string_t output;
+    char output[256] = { 0 };
 
 
     if (argc < 4)
@@ -58,8 +49,7 @@ int main(int argc, char *argv[])
     width   = 0;
     height  = 0;
     wxh     = 0;
-	cp		= NULL;
-	output	= null;
+    cp      = NULL;
 
     // get input file name from comand line
     ifd = open(argv[1], O_RDONLY);
@@ -70,13 +60,13 @@ int main(int argc, char *argv[])
     }
     
     // specify output file name
-	cp = rindex(argv[1], '_');
-	strncpy(output.name, argv[1], cp - argv[1]);
-	cp = rindex(argv[1], '.');
-    strcat(output.name, cp);
+    cp = strrchr(argv[1], '_');
+    strncpy(output, argv[1], cp - argv[1]);
+    cp = strrchr(argv[1], '.');
+    strcat(output, cp);
     ofd = open
             (
-             output.name,
+             output,
              O_WRONLY | O_CREAT | O_TRUNC,
              S_IRUSR
             );
@@ -125,7 +115,7 @@ int main(int argc, char *argv[])
     close(ofd);
     
     printf("Done\n");
-    printf("Output file: %s\n", output.name);
+    printf("Output file: %s\n", output);
     
     return 0;
 }
